@@ -34,8 +34,10 @@ export default function Index() {
   const { startSSOFlow } = useSSO();
   const navigation = useNavigation();
   const router = useRouter();
+
   const { user } = useUser();
-  console.log(user);
+
+  console.log(user?.fullName);
 
   useEffect(() => {
     navigation.setOptions({
@@ -50,7 +52,7 @@ export default function Index() {
     try {
       const result = await axiosClient.post("/user-lists", {
         data: {
-          fullName: user?.fullName,
+          FullName: user?.fullName,
           email: user?.primaryEmailAddress?.emailAddress,
         },
       });
