@@ -36,7 +36,7 @@ export default function Slider() {
               style={{
                 width: Dimensions.get("screen").width * 0.9,
                 height: 200,
-                borderRadius: 20,
+                borderRadius: 18,
                 marginRight: 15,
               }}
             ></Image>
