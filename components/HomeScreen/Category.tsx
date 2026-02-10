@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { axiosClient } from "@/services/GlobalApi";
 import Colors from "@/services/Colors";
 
-type CategoryType = {
+export type CategoryType = {
   name: string;
   premium: boolean;
   icon: { url: string };
@@ -51,9 +51,9 @@ export default function Category() {
             <TouchableOpacity key={index} style={{
                 flex: 1,
                 alignItems: "center",
-                padding: 5,
+                padding: 3,
                 backgroundColor: Colors.WHITE,
-                margin: 5,
+                margin: 3,
                 borderRadius: 10,
                 height: 85,
                 justifyContent: "center",
@@ -61,12 +61,14 @@ export default function Category() {
                 <Image source={{uri:item?.icon?.url}} style={{
                     width: 40,
                     height: 40,
+                    marginTop: 5,
                 }}>
                    
                 </Image>
                  <Text style={{
                         textAlign: "center",
                         marginTop: 5,
+
                         fontFamily: "mont",
                     }}>{item.name}</Text>
             </TouchableOpacity>
