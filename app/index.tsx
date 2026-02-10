@@ -56,8 +56,10 @@ export default function Index() {
           email: user?.primaryEmailAddress?.emailAddress,
         },
       });
+      router.replace("/(tabs)/Home");
     } catch (error) {
       console.log("Error creating user:", error);
+      router.replace("/(tabs)/Home");
     }
   };
 
@@ -89,7 +91,7 @@ export default function Index() {
               return;
             }
 
-            router.push("/");
+            router.push("/(tabs)/Home");
           },
         });
       } else {
