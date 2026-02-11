@@ -1,18 +1,17 @@
-import {
-  View,
-  Text,
-  TextInput,
-  FlatList,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
-import React, { use, useEffect, useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import BusinessListCard from "@/components/BusinessListScreen/BusinessListCard";
+import { BusinessType } from "@/components/HomeScreen/PopularBusinessList";
 import Colors from "@/services/Colors";
 import { axiosClient } from "@/services/GlobalApi";
-import { BusinessType } from "@/components/HomeScreen/PopularBusinessList";
-import BusinessListCard from "@/components/BusinessListScreen/BusinessListCard";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from "react-native";
 export default function BusinessList() {
   const { categoryName } = useLocalSearchParams();
   const [businessList, setBusinessList] = useState<BusinessType[]>([]);
@@ -28,14 +27,21 @@ export default function BusinessList() {
 
   const GetBusinessListByCategory = async () => {
     setLoading(true);
-    const result = await axiosClient.get(
-      "/business-lists?filters[category][name][$eq]" +
-        categoryName +
-        "&populate=*",
-    );
-    setBusinessList(result?.data?.data);
-    setOriginalBusinessList(result?.data?.data);
-    setLoading(false);
+    setBusinessList([]);
+    try {
+      const result = await axiosClient.get(
+        // "/business-lists?filters[category][name][$eq]" +
+        // categoryName +
+        // "&populate=*",
+        `/business-lists?filters[category][name][$eq]=${categoryName}&populate=*`
+      );
+      setBusinessList(result?.data?.data);
+      setOriginalBusinessList(result?.data?.data);
+    } catch (error) {
+      console.error("Error fetching business list:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const onSearchfilter = (searchInput: string) => {
