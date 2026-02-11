@@ -8,7 +8,7 @@ import ActionButtonScreen from "@/components/BusinessDetailsScreen/ActionButtonS
 import BusinessDescription from "@/components/BusinessDetailsScreen/BusinessDescription";
 import { axiosClient } from "@/services/GlobalApi";
 import { useUser } from "@clerk/clerk-expo";
-0;
+
 export default function BusinessDetail() {
   const router = useRouter();
   const { business } = useLocalSearchParams();
