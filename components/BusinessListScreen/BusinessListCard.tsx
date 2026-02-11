@@ -1,15 +1,25 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { BusinessType } from '../HomeScreen/PopularBusinessList'
 import Colors from '@/services/Colors';
+import { useRouter } from 'expo-router';
 
 type Props ={
     business: BusinessType;
 }
 
 export default function BusinessListCard({business}:Props) {
+
+    const router = useRouter();
   return (
-    <View style={{
+    <TouchableOpacity
+    onPress={()=> router.push({
+        pathname: "/business-detail/index",
+        params: {
+            business: JSON.stringify(business),
+        }
+    })}
+    style={{
         padding: 7,
         backgroundColor: Colors.WHITE,
         borderRadius: 15,
@@ -51,6 +61,6 @@ export default function BusinessListCard({business}:Props) {
                 <Text>4.3/5</Text>
             </View>
         </View>
-    </View>
+    </TouchableOpacity>
   )
 }

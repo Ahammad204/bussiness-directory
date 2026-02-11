@@ -12,6 +12,8 @@ export type BusinessType = {
   category: CategoryType;
   images: ImagesType[];
   id: number;
+  phone: string;
+  website: string;
 };
 
 type ImagesType = {
