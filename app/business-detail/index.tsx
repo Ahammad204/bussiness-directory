@@ -23,9 +23,9 @@ export default function BusinessDetail() {
 
   const MarkAsFavourite = async () => {
     if (isFavourite) {
-        await axiosClient.delete("/user-favourites/" + favDetails?.documentId);
-        ToastAndroid.show("Removed from favourites", ToastAndroid.BOTTOM);
-        checkIsFavourite();
+      await axiosClient.delete("/user-favourites/" + favDetails?.documentId);
+      ToastAndroid.show("Removed from favourites", ToastAndroid.BOTTOM);
+      checkIsFavourite();
     } else {
       const result = await axiosClient.post("/user-favourites", {
         data: {
@@ -34,16 +34,17 @@ export default function BusinessDetail() {
         },
       });
       ToastAndroid.show("Added to favourites", ToastAndroid.BOTTOM);
-        checkIsFavourite();
+      checkIsFavourite();
     }
   };
 
   const checkIsFavourite = async () => {
     const result = await axiosClient.get(
-      "/user-favourites?filters[userEmail][$eq]=" +
-        user?.primaryEmailAddress?.emailAddress +
-        "&filters[businessId][$eq]" +
-        businessDetail?.id,
+      //   "/user-favourites?filters[userEmail][$eq]=" +
+      //     user?.primaryEmailAddress?.emailAddress +
+      //     "&filters[businessId][$eq]" +
+      //     businessDetail?.id,
+      `/user-favourites?filters[userEmail][$eq]=${user?.primaryEmailAddress?.emailAddress}&filters[businessId][$eq]=${businessDetail?.id}`,
     );
     const data = result?.data?.data;
     setFavDetails(data[0]);
