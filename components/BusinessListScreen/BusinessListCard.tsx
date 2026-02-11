@@ -14,7 +14,7 @@ export default function BusinessListCard({business}:Props) {
   return (
     <TouchableOpacity
     onPress={()=> router.push({
-        pathname: "/business-detail/index",
+        pathname: "/business-detail",
         params: {
             business: JSON.stringify(business),
         }

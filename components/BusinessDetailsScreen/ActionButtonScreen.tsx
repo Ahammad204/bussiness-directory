@@ -39,7 +39,8 @@ export default function ActionButtonScreen({ business }: Props) {
 
     const onShare = async() => {
         const result = await Share.share({
-            message: 'Check out this local business:\n' +'Business Name:'+business?.name
+            message: `Check out ${business?.name} located at ${business?.address}. Contact: ${business?.phone}, Website: ${business?.website}`,
+            
         })
     }
 
