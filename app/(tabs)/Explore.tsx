@@ -20,7 +20,7 @@ export default function Explore() {
   const router = useRouter();
   useEffect(() => {
     GetBusinessList();
-  });
+  }, []);
 
   const GetBusinessList = async () => {
     setLoading(true);
@@ -37,7 +37,7 @@ export default function Explore() {
       clearTimeout(searchTimer.current);
     }
     searchTimer.current = setTimeout(() => {
-      if (value.trim() == "") {
+      if (value.trim() === "") {
         GetBusinessList();
       } else {
         searchBusiness(value);
